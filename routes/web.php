@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('signaturepad');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// ruta para mostrar la vista de la firma digital
+Route::get( 'signaturepad', [App\Http\Controllers\SignaturePadController :: class , 'index' ]);
+// ruta para guardar la firma digital
+Route::post( 'signaturepad', [App\Http\Controllers\SignaturePadController :: class , 'upload' ])->name( 'signaturepad.upload' );
